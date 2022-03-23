@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_EJEMPLO_LINQ" Class="BD_HOTELDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=CHUNCHUNMARU;Initial Catalog=BD_EJEMPLO_LINQ;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BD_EJEMPLO_LINQConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CLIENTES" Member="CLIENTES">
+    <Type Name="CLIENTES">
+      <Column Name="ID_CLIENTE" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="TELEFONO" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="DIRECCION" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Association Name="CLIENTES_RESERVACIONES" Member="RESERVACIONES" ThisKey="ID_CLIENTE" OtherKey="ID_CLIENTE" Type="RESERVACIONES" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RESERVACIONES" Member="RESERVACIONES">
+    <Type Name="RESERVACIONES">
+      <Column Name="NUMRESERVACION" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_CLIENTE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FECHAINGRESO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHASALIDA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CANTIDADPERSONAS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TIPOHABITACION" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="PRECIO_NOCHE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CANCELADA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="CLIENTES_RESERVACIONES" Member="CLIENTES" ThisKey="ID_CLIENTE" OtherKey="ID_CLIENTE" Type="CLIENTES" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.ELIMINAR" Method="ELIMINAR">
+    <Parameter Name="idcliente" Type="System.Int32" DbType="Int" />
+    <Parameter Name="msj" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
